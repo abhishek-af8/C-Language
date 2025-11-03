@@ -5,7 +5,8 @@
 a = 3;      //sets the initial value of 'a'
 
 void test(){
-    extern int a;
+    extern int a;           //these declarations doesn't get memory allocated for a or b. They are just referrals 
+                            //(or references) to global varaibles a and b declared somewhere else.
     extern int b;
     a++;
     b++;
