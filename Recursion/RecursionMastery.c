@@ -19,7 +19,9 @@ int fun(int n)
 
 int main()
 {
+    printf("\n");
     fun(3);
+    printf("\n\n");
     return 0;
 }
 
