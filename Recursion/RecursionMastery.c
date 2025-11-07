@@ -26,6 +26,15 @@ int main()
 
 /*
 
+Process: The entire program
+└── Thread: main()
+    ├── fun(3)
+    │   ├── fun(2)
+    │   │   ├── fun(1)
+    │   │   └── return
+    │   └── return
+    └── return
+
 So first of all 
 fun(3) is called
 
@@ -66,3 +75,5 @@ x from program's static area and y from it's own stack
 Meaning : since x is a static variable so each function call fetches it from program's static area. And, since y is a local variable in each function call so each function call fetches y's value from its own activation record's stack.
 
 */
+
+
