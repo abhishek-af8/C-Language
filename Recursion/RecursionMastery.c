@@ -59,6 +59,10 @@ fun(0) is called and here n>0 is false
 so it returns to fun(1)
 fun(1) is waiting to execute printf("[%d, %d] ", x, y); and x == 3 and in fun(1) stack y = 1 so it prints [3, 1] and returns to fun(2) which also prints [3, 1] in the same way and fun(3) also prints [3, 1] in the same way
 
+
 x from program's static area and y from it's own stack
+
+
+Meaning : since x is a static variable so each function call fetches it from program's static area. And, since y is a local variable in each function call so each function call fetches y's value from its own activation record's stack.
 
 */
