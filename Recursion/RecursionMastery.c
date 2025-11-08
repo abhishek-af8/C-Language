@@ -49,29 +49,35 @@ x++ happens setting x value to 1
 and y++ sets y value to 1
 then
 printf("(%d, %d) ", x, y); is executed that prints the first pair (1, 1)
-then fun(2) is called first and fun(3) waits for fun(3) to return before executing printf("[%d, %d] ", x, y); 
+then fun(2) is called first and fun(3) waits for fun(2) to return before executing printf("[%d, %d] ", x, y); 
 
 now fun(2) is called
 again y is initialised to 0 because its just a local var whose lifetime was till the end of fun(3) execution
 fun(2) will get a fresh initialisation of y for it's stack
-x remains as it is which is 1
-n>0 is true here so 
+x remains as it is which is 1 because its static so it lives for the whole program
+n>0 is true here, so 
 x++ results in x=2
 y++ results in y=1
 
-printf("(%d, %d)", x, y); is executed and (2, 1) is printed 
-then fun(1) is called and fun(2) waits fun(1) to returns before executing printf("[%d, %d] ", x, y);
+printf("(%d, %d)", x, y); is executed and (2, 1) is printed
+
+then fun(1) is called and fun(2) waits for fun(1) to returns before executing printf("[%d, %d] ", x, y);
 
 just like fun(2), fun(1) is also excuted and prints (3, 1)
 
 Now x = 3 and y = 1
 
-fun(0) is called and here n>0 is false
+fun(0) is called and x remains 3 and y is initialise to y=0 again.
+Now here, n>0 is false.
 so it returns to fun(1)
-fun(1) is waiting to execute printf("[%d, %d] ", x, y); and x == 3 and in fun(1) stack y = 1 so it prints [3, 1] and returns to fun(2) which also prints [3, 1] in the same way and fun(3) also prints [3, 1] in the same way
 
+fun(1) is waiting to execute printf("[%d, %d] ", x, y); and x == 3 and in fun(1) frame in program's stack y = 1 so it prints [3, 1] and returns to fun(2) which also prints [3, 1] in the same way and fun(3) also prints [3, 1] in the same way. 
 
-x from program's static area and y from it's own stack
+Look here very minutely, fun(0) was called and it reinitialised y=0 but despite this reinitialisation, each fun(1), fun(2) and fun(3) print y=1. Why? 
+- Because y=0 has been initialised only in fun(0) frame in program's stack. fun(1), fun(2) and fun(3)'s stack still hold the value of y = 1 in their respective frames in the program's stack. Hence, all of them return a y value = 1.
+
+So everyone gets,
+x from program's static area and y from it's own frame in program's stack.
 
 
 Meaning : since x is a static variable so each function call fetches it from program's static area. And, since y is a local variable in each function call so each function call fetches y's value from its own activation record's stack.
