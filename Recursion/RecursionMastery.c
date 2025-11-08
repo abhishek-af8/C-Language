@@ -43,9 +43,9 @@ We will discuss why it is like that in greater detail
 So first of all 
 fun(3) is called
 
-static int x = 0 is declared 
+static int x = 0 is declared and initialised [Static Variables are initialised only once, the first time the function is called]
 then 
-int y = 0 is declared
+int y = 0 is declared [local to function, it will be initialised each time the function is called]
 
 now here n>0, so 
 x++ happens setting x value to 1
@@ -94,5 +94,3 @@ x from program's static area and y from it's own frame in program's stack.
 
 Meaning : since x is a static variable so each function call fetches it from program's static area. And, since y is a local variable in each function call so each function call fetches y's value from its own activation record's stack.
 */
-
-
