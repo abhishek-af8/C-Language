@@ -74,7 +74,7 @@ so it returns to fun(1)
 fun(1) is waiting to execute printf("[%d, %d] ", x, y); and x == 3 and in fun(1) frame in program's stack y = 1 so it prints [3, 1] and returns to fun(2) which also prints [3, 1] in the same way and fun(3) also prints [3, 1] in the same way. 
 
 Look here very minutely, fun(0) was called and it reinitialised y=0 but despite this reinitialisation, each fun(1), fun(2) and fun(3) print y=1. Why? 
-- Because y=0 has been initialised only in fun(0) frame in program's stack. fun(1), fun(2) and fun(3)'s stack still hold the value of y = 1 in their respective frames in the program's stack. Hence, all of them return a y value = 1.
+- Because y=0 has been initialised only in fun(0)'s frame in program's stack. fun(1), fun(2) and fun(3) still hold the value of y = 1 in their respective frames in the program's stack. Hence, all of them return a y value = 1.
 
 So everyone gets,
 x from program's static area and y from it's own frame in program's stack.
