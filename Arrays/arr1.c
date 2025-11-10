@@ -37,3 +37,5 @@ int main(){
     }
     return 0;
 }
+
+//we can also initialise hardcoded arrays
